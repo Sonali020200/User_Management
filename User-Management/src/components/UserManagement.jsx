@@ -137,88 +137,116 @@ const UserManagement = () => {
   });
 
   return (
-    <Container sx={{ marginTop: 2 }}>
-
-<Button
-  variant="contained"
-  onClick={handleOpenDialog}
+    <Container
   sx={{
-    marginTop: 1,
-    marginBottom: 2,
-    backgroundColor: "#4358f6",
-    marginRight: 60,
-    borderRadius: 2,
+    marginTop: 2,
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexWrap: "wrap",
+    gap: 2, 
   }}
-  startIcon={<AddIcon />} 
 >
-  Add User
-</Button>
-      <TextField
-        label="Search by Name or Email "
-        variant="outlined"
-        value={searchTerm}
-        onChange={handleSearchChange}
-        sx={{
-          marginRight: 2,
-          marginBottom: 2,
-          minWidth: 300,
-          backgroundColor: "rgba(255, 255, 255, 0.7)",
-          borderRadius: 2,
-        }}
-      />
+  
+  <Button
+    variant="contained"
+    onClick={handleOpenDialog}
+    sx={{
+      backgroundColor: "#4358f6",
+      borderRadius: 2,
+      flexBasis: "100%", 
+      "@media (min-width: 900px)": {
+        flexBasis: "auto", 
+      },
+    }}
+    startIcon={<AddIcon />}
+  >
+    Add User
+  </Button>
 
-      <FormControl
-        variant="outlined"
-        sx={{
-          minWidth: 200,
-          marginRight: 2,
-          marginBottom: 2,
-          backgroundColor: "rgba(255, 255, 255, 0.7)",
-          borderRadius: 2,
-        }}
-      >
-        <InputLabel>Filter by Department</InputLabel>
-        <Select
-          value={selectedDepartment}
-          onChange={handleDepartmentChange}
-          label="Filter by Department"
-        >
-          <MenuItem value="">All Departments</MenuItem>
-          {departmentsList.map((dept, index) => (
-            <MenuItem key={index} value={dept}>
-              {dept}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      
-        
+  <div
+    style={{
+      display: "flex",
+      flexWrap: "wrap",
+      gap: "16px",
+      justifyContent: "flex-end", 
+      width: "100%", 
+      "@media (min-width: 900px)": {
+        justifyContent: "flex-end", 
+      },
+    }}
+  >
     
+    <TextField
+      label="Search by Name or Email"
+      variant="outlined"
+      value={searchTerm}
+      onChange={handleSearchChange}
+      sx={{
+        minWidth: "100%",
+        backgroundColor: "rgba(255, 255, 255, 0.7)",
+        borderRadius: 2,
+        "@media (min-width: 900px)": {
+          minWidth: 300, 
+        },
+      }}
+    />
 
-      <UserTable
-        users={filteredUsers.slice(
-          page * rowsPerPage,
-          page * rowsPerPage + rowsPerPage
-        )}
-        onEdit={handleSelectUser}
-        onDelete={handleDeleteUser}
-        loading={loading}
-        page={page}
-        rowsPerPage={rowsPerPage}
-        totalUsers={filteredUsers.length}
-        onChangePage={handleChangePage}
-      />
+    
+    <FormControl
+      variant="outlined"
+      sx={{
+        minWidth: "100%",
+        backgroundColor: "rgba(255, 255, 255, 0.7)",
+        borderRadius: 2,
+        "@media (min-width: 900px)": {
+          minWidth: 200, 
+        },
+      }}
+    >
+      <InputLabel>Filter by Department</InputLabel>
+      <Select
+        value={selectedDepartment}
+        onChange={handleDepartmentChange}
+        label="Filter by Department"
+      >
+        <MenuItem value="">All Departments</MenuItem>
+        {departmentsList.map((dept, index) => (
+          <MenuItem key={index} value={dept}>
+            {dept}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+  </div>
 
-      <Dialog open={isDialogOpen} onClose={handleCloseDialog}>
-        <UserForm
-          onSave={selectedUser ? handleEditUser : handleAddUser}
-          user={selectedUser}
-          onCancel={handleCloseDialog}
-        />
-      </Dialog>
+  
+  <UserTable
+    users={filteredUsers.slice(
+      page * rowsPerPage,
+      page * rowsPerPage + rowsPerPage
+    )}
+    onEdit={handleSelectUser}
+    onDelete={handleDeleteUser}
+    loading={loading}
+    page={page}
+    rowsPerPage={rowsPerPage}
+    totalUsers={filteredUsers.length}
+    onChangePage={handleChangePage}
+  />
 
-      <ToastContainer />
-    </Container>
+ 
+  <Dialog open={isDialogOpen} onClose={handleCloseDialog}>
+    <UserForm
+      onSave={selectedUser ? handleEditUser : handleAddUser}
+      user={selectedUser}
+      onCancel={handleCloseDialog}
+    />
+  </Dialog>
+
+  <ToastContainer />
+</Container>
+
   );
 };
 
