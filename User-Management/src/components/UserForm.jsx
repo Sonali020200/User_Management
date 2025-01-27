@@ -105,12 +105,33 @@ const UserForm = ({ onSave, user, onCancel }) => {
               marginTop: 2,
             }}
           >
-            <Button type="submit" variant="contained" color="primary">
-              Save
-            </Button>
-            <Button variant="outlined" color="secondary" onClick={onCancel}>
-              Cancel
-            </Button>
+            <Button
+  type="submit"
+  variant="contained"
+  sx={{
+    backgroundColor: "#28a745", 
+    color: "#fff", 
+    "&:hover": {
+      backgroundColor: "#218838", 
+    },
+  }}
+>
+  Save
+</Button>
+<Button
+  variant="outlined"
+  sx={{
+    color: "#6c757d", 
+    border: "1px solid #6c757d", 
+    "&:hover": {
+      backgroundColor: "#e2e6ea", 
+    },
+  }}
+  onClick={onCancel}
+>
+  Cancel
+</Button>
+
           </Grid>
         </Grid>
       </form>
