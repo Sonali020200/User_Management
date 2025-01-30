@@ -63,9 +63,9 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .heading {
-    font-size: clamp(20px, 6vw, 32px); 
+    font-size: clamp(30px, 6vw, 32px); 
   }
 }
 
